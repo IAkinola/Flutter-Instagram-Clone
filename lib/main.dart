@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import './pages/create_post.dart';
+import './pages/home.dart';
+import './pages/notifications.dart';
+import './pages/profile.dart';
+import './pages/search.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Picturegram',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -18,7 +23,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: HomeScreen(),
     );
@@ -31,33 +36,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Widget> pages = [
+    MainPage(),
+    SearchPage(),
+    CreatePostPage(),
+    NotificationsPage(),
+    ProfilePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     //Making The Pages For The App
+
     return DefaultTabController(
       length: 5,
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Picturegram', textAlign: TextAlign.center,),
+          title: Text(
+            'Picturegram',
+            textAlign: TextAlign.center,
+          ),
         ),
-        body: TabBarView(children: [
-          Container(
-            color: Colors.yellow,
-          ),
-          Container(
-            color: Colors.orange,
-          ),
-          Container(
-            color: Colors.lightGreen,
-          ),
-          Container(
-            color: Colors.red,
-          ),
-          Container(
-            color: Colors.lightBlue,
-          ),
-        ]),
+        body: TabBarView(children: pages),
 
         //Icons For The Bottom Navigation Bar
         bottomNavigationBar: Container(
